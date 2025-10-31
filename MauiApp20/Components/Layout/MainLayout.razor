@@ -1,0 +1,63 @@
+﻿@inherits LayoutComponentBase
+
+<div class="mobile-container">
+    <!-- Header -->
+    <NavMenu />
+    
+    <!-- Page Content -->
+    <div class="page-content">
+        @Body
+    </div>
+    
+    <!-- Bottom Navigation -->
+    <div class="bottom-panel">
+        <ul>
+            <li class="@(IsActive("/"))">
+                <a href="/">
+                    <div class="icon">
+                        <i class="iconly-Home icli"></i>
+                        <i class="iconly-Home icbo"></i>
+                    </div>
+                    <span>Ana Sayfa</span>
+                </a>
+            </li>
+            <li class="@(IsActive("/tasks"))">
+                <a href="/tasks">
+                    <div class="icon">
+                        <i class="iconly-Document icli"></i>
+                        <i class="iconly-Document icbo"></i>
+                    </div>
+                    <span>Görevler</span>
+                </a>
+            </li>
+            <li class="@(IsActive("/notification"))">
+                <a href="/notification">
+                    <div class="icon">
+                        <i class="iconly-Notification icli"></i>
+                        <i class="iconly-Notification icbo"></i>
+                    </div>
+                    <span>Bildirim</span>
+                </a>
+            </li>
+            <li class="@(IsActive("/profile"))">
+                <a href="/profile">
+                    <div class="icon">
+                        <i class="iconly-Profile icli"></i>
+                        <i class="iconly-Profile icbo"></i>
+                    </div>
+                    <span>Profil</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+@code {
+    [Inject] private NavigationManager Navigation { get; set; }
+    
+    private string IsActive(string route)
+    {
+        var currentPath = new Uri(Navigation.Uri).AbsolutePath;
+        return currentPath == route ? "active" : "";
+    }
+}

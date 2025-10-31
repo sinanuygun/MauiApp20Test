@@ -1,0 +1,60 @@
+﻿@page "/test"
+@using MauiApp20.Models
+@using MauiApp20.Services
+@inject IDataService<TestEntity> DataService
+@inject IConnectivityService ConnectivityService
+
+<h3>SQLite Test</h3>
+
+<div>
+    <p>İnternet: <strong>@(ConnectivityService.IsConnected ? "Bağlı ✅" : "Bağlı Değil ❌")</strong></p>
+</div>
+
+<hr />
+
+<div>
+    <input @bind="newName" placeholder="İsim gir" />
+    <button @onclick="AddItem">Ekle</button>
+    <button @onclick="LoadItems">Listele</button>
+    <button @onclick="SyncFromApi">API'den Sync</button>
+</div>
+
+<hr />
+
+<h4>Kayıtlar:</h4>
+<ul>
+    @foreach (var item in items)
+    {
+<li>@item.Id - @item.Name - @item.CreatedAt.ToString("g")</li>    }
+</ul>
+
+@code {    private string newName = "";
+    private List<TestEntity> items = new();
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadItems();
+    }
+    private async Task AddItem()
+    {
+        if (string.IsNullOrWhiteSpace(newName))
+            return;
+        var entity = new TestEntity
+        {
+            Name = newName,
+            CreatedAt = DateTime.Now
+        };
+        await DataService.SaveAsync(entity);
+        newName = "";
+        await LoadItems();
+    }
+    private async Task LoadItems()
+    {
+        items = await DataService.GetAllAsync();
+        StateHasChanged();
+    }
+    private async Task SyncFromApi()
+    {
+        await DataService.SyncFromApiAsync();
+        await LoadItems();
+    }
+}

@@ -1,0 +1,140 @@
+﻿@inject NavigationManager NavigationManager
+
+<!-- Header -->
+<header>
+    <div class="nav-bar" @onclick="ToggleSidebar">
+        <img src="assets/svg/bar.svg" class="img-fluid" alt="">
+    </div>
+    <a href="/" class="brand-logo">
+        <img src="assets/images/logo.png" class="img-fluid" alt="">
+    </a>
+    <div class="header-option">
+        <ul>
+            <li>
+                <a href="/notification"><i class="iconly-Notification icli"></i></a>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<a href="javascript:void(0)" class="overlay-sidebar" @onclick="ToggleSidebar"></a>
+
+<div class="header-sidebar @(isSidebarOpen ? "show" : "")">
+    <a href="/profile-setting" class="user-panel">
+        <img src="assets/images/user/1.png" class="img-fluid user-img" alt="">
+        <span>Merhaba, @UserName</span>
+        <i class="iconly-Arrow-Right-2 icli"></i>
+    </a>
+
+    <div class="sidebar-content">
+        <ul class="link-section">
+            <li>
+                <div>
+                    <i class="iconly-Setting icli"></i>
+                    <div class="content toggle-sec w-100">
+                        <div>
+                            <h4 class="mb-0">Karanlık Mod</h4>
+                        </div>
+                        <div class="button toggle-btn ms-auto">
+                            <input id="darkButton" type="checkbox" class="checkbox" @onchange="ToggleDarkMode">
+                            <div class="knobs">
+                                <span></span>
+                            </div>
+                            <div class="layer"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            
+            <li>
+                <a href="/">
+                    <i class="iconly-Home icli"></i>
+                    <div class="content">
+                        <h4>Ana Sayfa</h4>
+                        <h6>Dashboard, Özet Bilgiler</h6>
+                    </div>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/tasks">
+                    <i class="iconly-Document icli"></i>
+                    <div class="content">
+                        <h4>Görevlerim</h4>
+                        <h6>Bekleyen, Tamamlanan Görevler</h6>
+                    </div>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/notification">
+                    <i class="iconly-Notification icli"></i>
+                    <div class="content">
+                        <h4>Bildirimler</h4>
+                        <h6>Görev Bildirimleri</h6>
+                    </div>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/profile">
+                    <i class="iconly-Profile icli"></i>
+                    <div class="content">
+                        <h4>Profilim</h4>
+                        <h6>Hesap Bilgileri, Ayarlar</h6>
+                    </div>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/settings">
+                    <i class="iconly-Setting icli"></i>
+                    <div class="content">
+                        <h4>Ayarlar</h4>
+                        <h6>Karanlık Mod, Bildirimler</h6>
+                    </div>
+                </a>
+            </li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <ul class="link-section">
+            <li>
+                <a href="/help">
+                    <i class="iconly-Call icli"></i>
+                    <div class="content">
+                        <h4>Yardım</h4>
+                        <h6>Destek, SSS</h6>
+                    </div>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/test">
+                    <i class="iconly-Paper icli"></i>
+                    <div class="content">
+                        <h4>SQLite Test</h4>
+                        <h6>Veritabanı Test</h6>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+@code {
+    private bool isSidebarOpen = false;
+    private string UserName = "Kullanıcı";
+
+    private void ToggleSidebar()
+    {
+        isSidebarOpen = !isSidebarOpen;
+    }
+
+    private void ToggleDarkMode(ChangeEventArgs e)
+    {
+        // Dark mode logic
+        // JSInterop ile tema değiştirme yapılabilir
+    }
+}

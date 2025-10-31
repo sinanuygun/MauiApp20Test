@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="description" content="Multikart">
+    <meta name="keywords" content="Multikart">
+    <meta name="author" content="Multikart">
+    
+    <title>MauiApp20</title>
+    <base href="/" />
+    
+    <!-- Favicon and PWA settings -->
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" href="assets/images/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="assets/images/favicon.png">
+    <meta name="theme-color" content="#ff4c3b" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="MauiApp20">
+    <meta name="msapplication-TileImage" content="assets/images/favicon.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+    
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
+    
+    <!-- Multikart CSS -->
+    <link rel="stylesheet" id="rtl-link" type="text/css" href="assets/css/vendors/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/slick.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/vendors/iconly.css">
+    <link rel="stylesheet" id="change-link" type="text/css" href="assets/css/style.css">
+    
+    <!-- Original MAUI CSS -->
+
+    <link rel="stylesheet" href="css/app.css" />
+    <link rel="stylesheet" href="MauiApp20.styles.css" />
+</head>
+<body>
+    <!-- Loader start -->
+    <div class="loader">
+        <span></span>
+        <span></span>
+    </div>
+    <!-- Loader end -->
+    
+    <div class="status-bar-safe-area"></div>
+    <div id="app">Loading...</div>
+    
+    <div id="blazor-error-ui">
+        An unhandled error has occurred.
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+    
+    <!-- Multikart JS -->
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/slick.js"></script>
+    <script src="assets/js/homescreen-popup.js"></script>
+    <script src="assets/js/timer.js"></script>
+    <script src="assets/js/offcanvas-popup.js"></script>
+    <script src="assets/js/script.js"></script>
+    
+    <!-- MAUI Blazor JS -->
+    <script src="_framework/blazor.webview.js" autostart="false"></script>
+</body>
+</html>
