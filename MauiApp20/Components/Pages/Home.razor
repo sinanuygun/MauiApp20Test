@@ -1,10 +1,11 @@
 ﻿@page "/"
 <link href="assets/css/custom.css" rel="stylesheet" />
-
-<div class="mobile-container">
-    <div class="page-content">
 <!-- Welcome Card -->
-<div style="margin-bottom:60px"></div>
+<div class="welcome-card">
+    <h2>Merhaba, Ahmet!</h2>
+    <p>Business Portal'a hoş geldiniz</p>
+</div>
+
 <!-- Stats Grid -->
 <div class="stats-grid">
     <div class="stat-card">
@@ -61,8 +62,6 @@
     </div>
 </div>
 
-    </div>
-</div>
 @code {
     private List<RecentTask> recentTasks = new();
 

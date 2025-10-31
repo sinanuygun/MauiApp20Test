@@ -1,35 +1,81 @@
 ﻿@inject NavigationManager NavigationManager
 
 <!-- Header -->
-<header>
+<header class="app-header">
     <div class="nav-bar" @onclick="ToggleSidebar">
-        <img src="assets/svg/bar.svg" class="img-fluid" alt="">
+        <i class="iconly-Category icli"></i>
     </div>
     <a href="/" class="brand-logo">
-        <img src="assets/images/logo.png" class="img-fluid" alt="">
+        <span>Business Portal</span>
     </a>
     <div class="header-option">
-        <ul>
-            <li>
-                <a href="/notification"><i class="iconly-Notification icli"></i></a>
-            </li>
-        </ul>
+        <a href="/notification" class="notification-btn">
+            <i class="iconly-Notification icli"></i>
+            <span class="notification-badge">3</span>
+        </a>
     </div>
 </header>
 
-<a href="javascript:void(0)" class="overlay-sidebar" @onclick="ToggleSidebar"></a>
+<a href="javascript:void(0)" class="overlay-sidebar @(isSidebarOpen ? "show" : "")" @onclick="ToggleSidebar"></a>
 
 <div class="header-sidebar @(isSidebarOpen ? "show" : "")">
-    <a href="/profile-setting" class="user-panel">
-        <img src="assets/images/user/1.png" class="img-fluid user-img" alt="">
-        <span>Merhaba, @UserName</span>
+    <a href="/profile" class="user-panel">
+        <div class="profile-avatar">AY</div>
+        <div class="profile-info">
+            <span class="user-name">Ahmet Yılmaz</span>
+            <span class="user-role">Finans Müdürü</span>
+        </div>
         <i class="iconly-Arrow-Right-2 icli"></i>
     </a>
-
+    
     <div class="sidebar-content">
         <ul class="link-section">
             <li>
-                <div>
+                <a href="/" @onclick="CloseSidebar">
+                    <i class="iconly-Home icli"></i>
+                    <div class="content">
+                        <h4>Ana Sayfa</h4>
+                        <h6>Dashboard, Özet Bilgiler</h6>
+                    </div>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/tasks" @onclick="CloseSidebar">
+                    <i class="iconly-Document icli"></i>
+                    <div class="content">
+                        <h4>Görevlerim</h4>
+                        <h6>Bekleyen, Tamamlanan Görevler</h6>
+                    </div>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/notification" @onclick="CloseSidebar">
+                    <i class="iconly-Notification icli"></i>
+                    <div class="content">
+                        <h4>Bildirimler</h4>
+                        <h6>Görev Bildirimleri</h6>
+                    </div>
+                </a>
+            </li>
+            
+            <li>
+                <a href="/profile" @onclick="CloseSidebar">
+                    <i class="iconly-Profile icli"></i>
+                    <div class="content">
+                        <h4>Profilim</h4>
+                        <h6>Hesap Bilgileri, Ayarlar</h6>
+                    </div>
+                </a>
+            </li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <ul class="link-section">
+            <li>
+                <div class="theme-toggle">
                     <i class="iconly-Setting icli"></i>
                     <div class="content toggle-sec w-100">
                         <div>
@@ -47,61 +93,7 @@
             </li>
             
             <li>
-                <a href="/">
-                    <i class="iconly-Home icli"></i>
-                    <div class="content">
-                        <h4>Ana Sayfa</h4>
-                        <h6>Dashboard, Özet Bilgiler</h6>
-                    </div>
-                </a>
-            </li>
-            
-            <li>
-                <a href="/tasks">
-                    <i class="iconly-Document icli"></i>
-                    <div class="content">
-                        <h4>Görevlerim</h4>
-                        <h6>Bekleyen, Tamamlanan Görevler</h6>
-                    </div>
-                </a>
-            </li>
-            
-            <li>
-                <a href="/notification">
-                    <i class="iconly-Notification icli"></i>
-                    <div class="content">
-                        <h4>Bildirimler</h4>
-                        <h6>Görev Bildirimleri</h6>
-                    </div>
-                </a>
-            </li>
-            
-            <li>
-                <a href="/profile">
-                    <i class="iconly-Profile icli"></i>
-                    <div class="content">
-                        <h4>Profilim</h4>
-                        <h6>Hesap Bilgileri, Ayarlar</h6>
-                    </div>
-                </a>
-            </li>
-            
-            <li>
-                <a href="/settings">
-                    <i class="iconly-Setting icli"></i>
-                    <div class="content">
-                        <h4>Ayarlar</h4>
-                        <h6>Karanlık Mod, Bildirimler</h6>
-                    </div>
-                </a>
-            </li>
-        </ul>
-
-        <div class="divider"></div>
-
-        <ul class="link-section">
-            <li>
-                <a href="/help">
+                <a href="/help" @onclick="CloseSidebar">
                     <i class="iconly-Call icli"></i>
                     <div class="content">
                         <h4>Yardım</h4>
@@ -109,32 +101,29 @@
                     </div>
                 </a>
             </li>
-            
-            <li>
-                <a href="/test">
-                    <i class="iconly-Paper icli"></i>
-                    <div class="content">
-                        <h4>SQLite Test</h4>
-                        <h6>Veritabanı Test</h6>
-                    </div>
-                </a>
-            </li>
         </ul>
+        
+        <div class="version-info">
+            Business Portal v1.0.0
+        </div>
     </div>
 </div>
 
 @code {
     private bool isSidebarOpen = false;
-    private string UserName = "Kullanıcı";
 
     private void ToggleSidebar()
     {
         isSidebarOpen = !isSidebarOpen;
     }
 
+    private void CloseSidebar()
+    {
+        isSidebarOpen = false;
+    }
+
     private void ToggleDarkMode(ChangeEventArgs e)
     {
-        // Dark mode logic
-        // JSInterop ile tema değiştirme yapılabilir
+        // Dark mode logic - JSInterop ile tema değiştirme yapılabilir
     }
 }
